@@ -1,11 +1,12 @@
 version: '3.8'
 
 services:
-  go-dev:
-    image: golang:1.21-alpine
+  go-dev: # Goの開発環境サービス
+    build: . # Dockerfileを使用してビルド
     working_dir: /app
     volumes:
       - .:/app
-    command: sh
-    stdin_open: true
-    tty: true
+    ports:
+      - "8080:8080" # Dockerfileで公開されているポートをマッピング
+    stdin_open: true # コンテナの標準入力を開く
+    tty: true # 擬似端末を割り当てる
